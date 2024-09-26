@@ -88,3 +88,7 @@ V budoucích verzích bych rád přidal tyto funkce:
 - Zadávání parametrů argumenty
 - Projekt template 
 - Config
+
+Kdyby jste chtěli přidat nějakou funkci, nebojte se Vidličkovat tento repozitář ;-)
+
+Pokud najdete nějakou chybu, nebojte se otevřít Problém ;-)
