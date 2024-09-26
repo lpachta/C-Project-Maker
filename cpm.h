@@ -8,7 +8,7 @@
 using namespace std;
 
 enum e_pars{
-  NAME, PROJECT_PATH, KACER_DONALD, LANG_EXT, ZIP_PATH, AUTHOR, AUTHOR_STRING
+  NAME, PROJECT_PATH, KACER_DONALD, LANG_EXT, ZIP_PATH, AUTHOR, AUTHOR_STRING, ZIP_NAME
 };
 
 typedef struct{
@@ -42,6 +42,7 @@ class Cpm{
       {KACER_DONALD, "NULL"},
       {LANG_EXT, "NULL"},
       {ZIP_PATH, "NULL"},
+      {ZIP_NAME, "NULL"},
       {AUTHOR, "NULL"},
       {AUTHOR_STRING, "NULL"}
     };
@@ -49,7 +50,8 @@ class Cpm{
     vector<Tfile> files;
 
   public:
-    void projectFromZip();
+    void unloadFiles();
+    void projectFromZipDir();
     bool replace(std::string& str, const std::string& from, const std::string& to);
     void renameFiles();
     void wrapMakeDir();
@@ -64,6 +66,7 @@ class Cpm{
     void loadFiles(int path);
 
     void makeProjectPath();
+    void makeZipDirPath();
     void inputPar(int par);
 
     string getPar(int par){return pars[par];}

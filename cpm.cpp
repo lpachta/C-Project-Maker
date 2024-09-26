@@ -16,6 +16,7 @@ void Cpm::loadOptions(int argc, char *argv[]){
   } else {
     cout << "Možné parametry: \n"; // Pak pridat ostatni args
     cout << "  -h // HELP\n";
+    cout << "  -z // Vytvoř projekt ze zip složky\n";
     cout << "  -c // ZKOPÍRUJ soubory ze složky do jiné (Pokud složka neexistuje, vytvoří ji.)\n";
     cout << "  -r // PŘEJMENUJ soubory podle klíče.)\n";
     cout << "  -m // Vytvoř MAKEFILE\n";
@@ -26,10 +27,35 @@ void Cpm::loadOptions(int argc, char *argv[]){
   else if(arg == "-m"){wrapCreateMakefile();}
   else if(arg == "-c"){copyFiles();}
   else if(arg == "-r"){renameFiles();}
+  else if(arg == "-z"){
+    projectFromZipDir();}
 
   else {
     return;
   }
+}
+
+void Cpm::projectFromZipDir(){
+  if(pars[ZIP_NAME] == "NULL"){
+    cout << "Zadejte název složky, kterou chcete přejmenovat: ";
+    cin >> pars[ZIP_NAME];
+  }
+  if(pars[NAME] == "NULL"){
+    cout << "Zadejte nový název složky: ";
+    cin >> pars[NAME];
+  }
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+  makeProjectPath();
+  makeZipDirPath();
+  
+  makeDir(pars[PROJECT_PATH]);
+  copyFiles();
+  renameFiles();
+
+  fs::remove_all(pars[ZIP_PATH]);
+  wrapCreateMakefile();
 }
 
 
@@ -43,10 +69,19 @@ bool Cpm::replace(std::string& str, const std::string& from, const std::string& 
 
 void Cpm::renameFiles(){
   if(pars[NAME] == "NULL"){inputPar(NAME);}
+  loadFiles(PROJECT_PATH);
+  cout << "Nalezené soubory: \n";
+  for (Tfile file: files){
+    cout << file.name << endl;
+  }
+  cout << endl;
+
+
   if(pars[KACER_DONALD] == "NULL"){inputPar(KACER_DONALD);}
   if(pars[AUTHOR_STRING] == "NULL"){inputPar(AUTHOR_STRING);}
   makeProjectPath();
-  loadFiles(PROJECT_PATH);
+
+
   string tempIn;
   string tempOut;
   string tempName;
@@ -63,18 +98,20 @@ void Cpm::renameFiles(){
     tempOut = pars[PROJECT_PATH] + tempName;
     fs::rename(tempIn, tempOut);
   }
+  unloadFiles();
 }
 
 void Cpm::copyFiles(){
   if(pars[NAME] == "NULL"){inputPar(NAME);}
-  if(pars[ZIP_PATH] == "NULL"){inputPar(ZIP_PATH);}
+  if(pars[ZIP_NAME] == "NULL"){inputPar(ZIP_NAME);}
+  makeZipDirPath();
   makeProjectPath();
-  loadFiles(ZIP_PATH);
+  loadFiles(ZIP_NAME);
   makeDir(pars[PROJECT_PATH]);
   string tempIn, tempOut;
   
   for(Tfile file : files){
-    tempIn = "./" + pars[ZIP_PATH] + "/" + file.name;
+    tempIn = pars[ZIP_PATH] + file.name;
     tempOut =  pars[PROJECT_PATH] + file.name;
       if(!fs::exists(tempOut)){
       fs::copy(tempIn, tempOut);
@@ -82,6 +119,7 @@ void Cpm::copyFiles(){
     }
   }
   cout << endl;
+  unloadFiles();
 }
 
 void Cpm::makeDir(string dir){
@@ -106,7 +144,7 @@ void Cpm::wrapCreateMakefile(){
   loadFiles(PROJECT_PATH);
 
   createMakefile();
-
+  unloadFiles();
 }
 
 /*
@@ -136,8 +174,19 @@ void Cpm::loadFiles(int path){
   }
 }
 
+void Cpm::unloadFiles(){
+  int n = files.size();
+  for(int i = 0; i < n; i++){
+    files.pop_back();
+  }
+}
+
 void Cpm::makeProjectPath(){
   pars[PROJECT_PATH] = "./" + pars[NAME] + "/";
+}
+
+void Cpm::makeZipDirPath(){
+  pars[ZIP_PATH] = "./" + pars[ZIP_NAME] + "/";
 }
 
 void Cpm::inputPar(int par){
@@ -174,7 +223,7 @@ void Cpm::inputPar(int par){
       pars[par] = "." + temp;
       break;
     
-    case ZIP_PATH:
+    case ZIP_NAME:
       cout << "Zadejte NÁZEV složky, kterou chcete kopírovat: ";
       getline(cin, pars[par]);
       break;
@@ -220,7 +269,11 @@ void Cpm::createMakefile(){
     CC = "g++";
   }
 
-  makefile << "\nCC=" << CC << "\n\nCFLAGS=-std=c99 -pedantic -Wall -g";
+  makefile << "\nCC=" << CC << "\n\nCFLAGS=";
+  if (CC == "gcc"){
+    makefile << "-std=c99 " ;
+  }
+  makefile <<  "-pedantic -Wall -g";
 
   makefile << "\nEXE_FILE=$(NAME)\nALL_FILES=./*"
               "\n\ncompile:\n	$(CC) $(CFLAGS) $(SOURCE_FILES) -o $(EXE_FILE)"

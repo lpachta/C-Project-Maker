@@ -2,11 +2,11 @@
 # Autor: Lukáš Pachta
 
 # VARS
-NAME=CProjectMaker
-SOURCE_FILES=cpm.cpp main.cpp oldMain.cpp 
+NAME=cpm
+SOURCE_FILES=cpm.cpp main.cpp 
 CC=g++
 
-CFLAGS=-std=c99 -pedantic -Wall -g
+CFLAGS=-pedantic -Wall -g
 EXE_FILE=$(NAME)
 ALL_FILES=./*
 

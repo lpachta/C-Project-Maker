@@ -15,7 +15,7 @@ Chtěl jsem zautomatizovat přejmenování souborů a vytvoření Makefajlu.
 
 ## Instalace
 
-### Dependencies
+### Dependence
 
 Pro instalaci a provoz programu je nutné mít nainstalované:
 
@@ -25,9 +25,27 @@ Doporučuji mít nainstalované:
 
 - Make (asi https://gnuwin32.sourceforge.net/packages/make.htm)
 
-### Instalace na Windows
-
 ### Instalace na Linux
+
+1. Na Releases github stránce si stáhněte nejnovější verzi CPM (https://github.com/lpachta/C-Project-Maker/releases)((je to zip)).
+2. Extrahujte zip
+
+    `unzip <název zipu>`
+
+3. Zkompilujte program
+    - Pokud máte Make: 
+
+    `make`
+
+    - Jinak:
+
+    `g++ main.cpp cpm.cpp -o cpm`
+
+4. Vytvořený binární soubor (cpm) přesuňte do složky s binárky.
+
+    `sudo cp <cesta k cpm> /usr/bin`
+
+### Instalace na Windows
 
 ### Instalace na MacOS
 
