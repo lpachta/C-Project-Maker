@@ -13,6 +13,24 @@ Mezi využití CPM patří:
 
 Chtěl jsem zautomatizovat přejmenování souborů a vytvoření Makefajlu.
 
+## Instalace
+
+### Dependencies
+
+Pro instalaci a provoz programu je nutné mít nainstalované:
+
+- Kompilátor C++ (např. gcc: https://gcc.gnu.org/install/)
+
+Doporučuji mít nainstalované:
+
+- Make (asi https://gnuwin32.sourceforge.net/packages/make.htm)
+
+### Instalace na Windows
+
+### Instalace na Linux
+
+### Instalace na MacOS
+
 ## Plány do budoucna 
 
 V budoucích verzích bych rád přidal tyto funkce: 
