@@ -30,33 +30,33 @@ Doporučuji mít nainstalované:
 1. Na Releases github stránce si stáhněte nejnovější verzi CPM ( https://github.com/lpachta/C-Project-Maker/releases )((je to zip)).
 2. Extrahujte zip
 
-    `unzip <název zipu>`
+        unzip <název zipu>
 
 3. Zkompilujte program
     - Pokud máte Make: 
-
-    `make`
+    
+            make
 
     - Jinak pomocí g++:
 
-    `g++ main.cpp cpm.cpp -o cpm`
+            g++ main.cpp cpm.cpp -o cpm
 
 4. Vytvořený binární soubor (cpm) přesuňte do složky s binárkami.
 
-    `sudo cp <cesta k cpm> /usr/bin`
+        sudo cp <cesta k cpm> /usr/bin
 
 ### Instalace na Windows 
 
 1. Na Releases github stránce si stáhněte nejnovější verzi CPM ( https://github.com/lpachta/C-Project-Maker/releases )((je to zip)).
 2. Extrahujte zip
 3. Zkompilujte program
-    - Pokud máte Make: 
+- Pokud máte Make: 
 
-    `make`
+        make
 
-    - Jinak pomocí g++:
+- Jinak pomocí g++:
 
-    `g++ main.cpp cpm.cpp -o cpm`
+        g++ main.cpp cpm.cpp -o cpm
 
 4. Vytvořený binární soubor (cpm) přesuňte do složky s binárkami, nebo vytvořte alias.
 
@@ -68,7 +68,7 @@ asi jak na linuxu...? idk
 
 Program se dá volat POUZE s argumenty a to v tomto tvaru:
 
-    `cpm {argument}`
+    cpm {argument}
 
 Mezi validní argumenty patří:
 
