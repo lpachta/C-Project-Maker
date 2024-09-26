@@ -27,7 +27,7 @@ Doporučuji mít nainstalované:
 
 ### Instalace na Linux
 
-1. Na Releases github stránce si stáhněte nejnovější verzi CPM (https://github.com/lpachta/C-Project-Maker/releases)((je to zip)).
+1. Na Releases github stránce si stáhněte nejnovější verzi CPM ( https://github.com/lpachta/C-Project-Maker/releases )((je to zip)).
 2. Extrahujte zip
 
     `unzip <název zipu>`
@@ -37,17 +37,48 @@ Doporučuji mít nainstalované:
 
     `make`
 
-    - Jinak:
+    - Jinak pomocí g++:
 
     `g++ main.cpp cpm.cpp -o cpm`
 
-4. Vytvořený binární soubor (cpm) přesuňte do složky s binárky.
+4. Vytvořený binární soubor (cpm) přesuňte do složky s binárkami.
 
     `sudo cp <cesta k cpm> /usr/bin`
 
-### Instalace na Windows
+### Instalace na Windows 
+
+1. Na Releases github stránce si stáhněte nejnovější verzi CPM ( https://github.com/lpachta/C-Project-Maker/releases )((je to zip)).
+2. Extrahujte zip
+3. Zkompilujte program
+    - Pokud máte Make: 
+
+    `make`
+
+    - Jinak pomocí g++:
+
+    `g++ main.cpp cpm.cpp -o cpm`
+
+4. Vytvořený binární soubor (cpm) přesuňte do složky s binárkami, nebo vytvořte alias.
 
 ### Instalace na MacOS
+
+asi jak na linuxu...? idk
+
+## Použití
+
+Program se dá volat POUZE s argumenty a to v tomto tvaru:
+
+    `cpm {argument}`
+
+Mezi validní argumenty patří:
+
+- {-h} // Help
+- {-z} // Ze složky extrahovaného zipu inicializuje projekt: Změní název složky, přejmenuje soubory pomocí vyhledej a nahraď a vytvoří Makefile
+- {-c} // ZKOPÍRUJ soubory ze složky do jiné (Pokud složka neexistuje, vytvoří ji.)
+- {-r} // Vyhledej a nahraď v názvech souborů projektu.
+- {-m} // Vytvoř Makefile.
+
+Použití mimo terminál není podporován.
 
 ## Plány do budoucna 
 
