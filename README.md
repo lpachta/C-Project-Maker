@@ -79,6 +79,8 @@ Mezi validní argumenty patří:
 - {-r} // Vyhledej a nahraď v názvech souborů projektu.
 - {-m} // Vytvoř Makefile.
 
+!! MUSÍTE BÝT V RODIČOVSKÉ SLOŽCE SLOŽKY, SE KTEROU PRACUJETE !! 
+
 Použití mimo terminál není podporován.
 
 ## Plány do budoucna 
