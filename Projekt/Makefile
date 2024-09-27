@@ -1,10 +1,10 @@
 # Projekt: Projekt
-# Autor: Lukáš
+# Autor: Lukáš Pachta
 
 # VARS
 NAME=Projekt
-SOURCE_FILES=
-CC=g++
+SOURCE_FILES=main.c 
+CC=gcc
 
 CFLAGS=-std=c99 -pedantic -Wall -g
 EXE_FILE=$(NAME)
