@@ -74,6 +74,7 @@ Mezi validní argumenty patří:
 
 - {-h} // Help
 - {-z} // Ze složky extrahovaného zipu inicializuje projekt: Změní název složky, přejmenuje soubory pomocí vyhledej a nahraď a vytvoří Makefile
+- {-d} // Vytvoří novou složku.
 - {-c} // ZKOPÍRUJ soubory ze složky do jiné (Pokud složka neexistuje, vytvoří ji.)
 - {-r} // Vyhledej a nahraď v názvech souborů projektu.
 - {-m} // Vytvoř Makefile.
