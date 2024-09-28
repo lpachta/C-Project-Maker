@@ -21,6 +21,7 @@ void Cpm::loadOptions(int argc, char *argv[]){
     cout << "Možné parametry: \n"; // Pak pridat ostatni args
     cout << "  -h // Help\n";
     cout << "  -z // Vytvoř projekt ze zip složky. Přejmenuje složku, přejmenuje soubory a vytvoří Makefile\n";
+    cout << "  -t // Vytvoř projekt z templatu.\n";
     cout << "  -d // Vytvoř novou složku.\n";
     cout << "  -c // Zkopíruj soubory ze složky do jiné (Pokud složka neexistuje, vytvoří ji.)\n";
     cout << "  -r // Přejmenuj soubory pomocí vyhledej a nahraď.)\n";
@@ -33,15 +34,18 @@ void Cpm::loadOptions(int argc, char *argv[]){
   else if(arg == "-c"){copyFiles();}
   else if(arg == "-r"){renameFiles();}
   else if(arg == "-z"){projectFromZipDir();}
-  else if(arg == "-d"){projectFromZipDir();}
+  else if(arg == "-d"){userMakeDir();}
+  else if(arg == "-t"){templateProject();}
   else {
     return;
   }
 }
 
+void Cpm::templateProject(){}
+
 void Cpm::userMakeDir(){
   if (pars[NAME] == "NULL"){
-    pars[NAME] = inputString("Zadejte název složky, kterou chcete vytvořit", false);
+    pars[NAME] = inputString("Zadejte název složky, kterou chcete vytvořit: ", false);
   }
   makeDir(pars[NAME]);
 }
@@ -301,7 +305,7 @@ void Cpm::createMakefile(){
               "\n\ncompile:\n	$(CC) $(CFLAGS) $(SOURCE_FILES) -o $(EXE_FILE)"
               "\n\nrun:\n	./$(EXE_FILE)\n\n\nclear-exe:\n	rm $(EXE_FILE)\n\nclear-bin:\n	rm -rf bin/ \n	rm -rf obj/"
               "\n\nclear-pack:\n	rm $(NAME).tar.gz\n	rm $(NAME).zip"
-              "\n\npack: clear-bin\n	tar cvzf $(NAME).tar.gz $(ALL_FILES)\n	zip $(NAME).zip $(ALL_FILES)"
+              "\n\npack: clear-bin\n	rm %(NAME)\n	tar cvzf $(NAME).tar.gz $(ALL_FILES)\n	zip $(NAME).zip $(ALL_FILES)"
               "\n\nclear: clear-bin clear-pack clear-exe";
     
   if (fs::exists(makefilePath)){

@@ -29,6 +29,7 @@ clear-pack:
 	rm $(NAME).zip
 
 pack: clear-bin
+	rm %(NAME)
 	tar cvzf $(NAME).tar.gz $(ALL_FILES)
 	zip $(NAME).zip $(ALL_FILES)
 

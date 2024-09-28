@@ -1,9 +1,9 @@
 # Projekt: CProjectMaker
-# Autor: Lukáš Pachta
+# Autor: Lukáš PAchta
 
 # VARS
 NAME=cpm
-SOURCE_FILES=cpm.cpp main.cpp 
+SOURCE_FILES=main.cpp cpm.cpp 
 CC=g++
 
 CFLAGS=-pedantic -Wall -g
@@ -29,6 +29,7 @@ clear-pack:
 	rm $(NAME).zip
 
 pack: clear-bin
+	rm %(NAME)
 	tar cvzf $(NAME).tar.gz $(ALL_FILES)
 	zip $(NAME).zip $(ALL_FILES)
 
