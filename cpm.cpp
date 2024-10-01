@@ -305,7 +305,7 @@ void Cpm::createMakefile(){
               "\n\ncompile:\n	$(CC) $(CFLAGS) $(SOURCE_FILES) -o $(EXE_FILE)"
               "\n\nrun:\n	./$(EXE_FILE)\n\n\nclear-exe:\n	rm $(EXE_FILE)\n\nclear-bin:\n	rm -rf bin/ \n	rm -rf obj/"
               "\n\nclear-pack:\n	rm $(NAME).tar.gz\n	rm $(NAME).zip"
-              "\n\npack: clear-bin\n	rm %(NAME)\n	tar cvzf $(NAME).tar.gz $(ALL_FILES)\n	zip $(NAME).zip $(ALL_FILES)"
+              "\n\npack: clear-bin\n	rm $(NAME)\n	tar cvzf $(NAME).tar.gz $(ALL_FILES)\n	zip $(NAME).zip $(ALL_FILES)"
               "\n\nclear: clear-bin clear-pack clear-exe";
     
   if (fs::exists(makefilePath)){
@@ -344,4 +344,6 @@ string Cpm::inputString(string message, bool line){
     }
     return result;
 }
+
+
 
